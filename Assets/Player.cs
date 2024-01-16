@@ -4,9 +4,11 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public string playerID = "1";
     public float speed = 5f;
     private float gravity = 20f;
     private Vector3 mouvZ = Vector3.zero;
@@ -26,14 +28,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(Cac.isGrounded){
-            mouvZ = new Vector3 (Input.GetAxis("Horizontal"), 0 ,Input.GetAxis("Vertical"));
+            mouvZ = new Vector3 (Input.GetAxis("Horizontal"+playerID), 0 ,Input.GetAxis("Vertical"+playerID));
             mouvZ = transform.TransformDirection(mouvZ);
             mouvZ *= speed;
         }
         mouvZ.y -= gravity * Time.deltaTime;
-        transform.Rotate(Vector3.up * Input.GetAxis("rotation") * Time.deltaTime * speed * 100);
+        transform.Rotate(Vector3.up * Input.GetAxis("Rotation"+playerID) * Time.deltaTime * speed * 100);
         Cac.Move(mouvZ*Time.deltaTime);
-        if(Input.GetButtonDown("Fire1") && bullet > 0)
+        if(Input.GetButtonDown("Fire"+playerID) && bullet > 0)
         {
             Vector3 spawn = transform.position;
             spawn += transform.TransformDirection(0,0,1);
