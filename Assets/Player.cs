@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class mouvement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public float speed = 5f;
     private float gravity = 20f;
     private Vector3 mouvZ = Vector3.zero;
     CharacterController Cac;
+    public GameObject projectile;
+    public int force = 1;
+    public int health = 3;
+    public int bullet = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -27,5 +33,18 @@ public class mouvement : MonoBehaviour
         mouvZ.y -= gravity * Time.deltaTime;
         transform.Rotate(Vector3.up * Input.GetAxis("rotation") * Time.deltaTime * speed * 100);
         Cac.Move(mouvZ*Time.deltaTime);
+        if(Input.GetButtonDown("Fire1") && bullet > 0)
+        {
+            Vector3 spawn = transform.position;
+            spawn.z += 1;
+            
+            GameObject balle = Instantiate(projectile, spawn, Quaternion.identity) as GameObject;
+            balle.GetComponent<Bullet>().owner = this.gameObject;
+            bullet--;
+            balle.GetComponent<Rigidbody>().velocity = transform.TransformDirection(Vector3.forward) * force;
+        }
+        if(health == 0){
+            Destroy(this.gameObject);
+        }
     }
 }
