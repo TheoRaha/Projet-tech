@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
         if(Input.GetButtonDown("Fire1") && bullet > 0)
         {
             Vector3 spawn = transform.position;
-            spawn.z += 1;
+            spawn += transform.TransformDirection(0,0,1);
             
             GameObject balle = Instantiate(projectile, spawn, Quaternion.identity) as GameObject;
             balle.GetComponent<Bullet>().owner = this.gameObject;
