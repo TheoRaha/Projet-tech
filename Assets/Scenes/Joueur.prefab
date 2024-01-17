@@ -152,11 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5beb2bc926883224388945a4ed24ec7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: 1
   speed: 5
-  projectile: {fileID: 7872443279033800451, guid: 9c540b5dd962ac34389ad5fd960923c0, type: 3}
-  force: 5
-  health: 3
-  bullet: 3
+  munition: {fileID: 7872443279033800451, guid: 9c540b5dd962ac34389ad5fd960923c0, type: 3}
+  vitesseBalle: 10
+  vieJoueur: 5
+  balleChargeur: 7
 --- !u!1 &8779246740032362946
 GameObject:
   m_ObjectHideFlags: 0

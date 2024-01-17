@@ -18,22 +18,25 @@ public class Bullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        startVelocity = bullet.GetComponent<Rigidbody>().velocity;
     }
 
     void OnCollisionEnter(Collision collision){
-        UnityEngine.Debug.Log(collision.collider.tag);
-        if(collision.collider.tag == "Wall")
-            health--;
-        if(collision.collider.tag == "Player"){
+        //UnityEngine.Debug.Log(collision.contacts[0].normal);
+        UnityEngine.Debug.Log(collision.contacts[0]);
+        health--;
+        if(collision.collider.tag == "Wall"){
+            GetComponent<Rigidbody>().velocity = Vector3.Reflect(startVelocity, collision.contacts[0].normal);
+        } else if(collision.collider.tag == "Player"){
             health = 0;
-            collision.collider.GetComponent<Player>().health--;
+            collision.collider.GetComponent<Player>().vieJoueur--;
+        } else {
         }
-        if(health == 0){
+        if(health <= 0){
             Destroy(bullet);
-            owner.GetComponent<Player>().bullet++;
+            owner.GetComponent<Player>().balleChargeur++;
         }
     }
 }
