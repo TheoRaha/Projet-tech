@@ -5,8 +5,9 @@ public class HealthBar : MonoBehaviour
 {
     Image Barre;
 
-    public float max;
+    private float max;
 
+    public GameObject joueur;
     private float Valeur;
     public float valeur
     {
@@ -23,5 +24,9 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         Barre = GetComponent<Image>();
+        max = joueur.GetComponent<Player>().vieJoueur;
+    }
+    void Update(){
+        valeur = joueur.GetComponent<Player>().vieJoueur;
     }
 }
