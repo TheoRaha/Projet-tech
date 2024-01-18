@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(vieJoueur == 0){
+        if(vieJoueur <= 0){
             Destroy(this.gameObject);
         }
         if(Cac.isGrounded){
