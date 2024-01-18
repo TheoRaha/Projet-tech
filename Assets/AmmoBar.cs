@@ -5,10 +5,9 @@ public class AmmoBar : MonoBehaviour
 {
     Image Ammo;
 
-    public string Id_Joueur;
+    private float max;
 
-    public float max;
-
+    public GameObject joueur;
     private float Valeur;
     public float valeur
     {
@@ -24,7 +23,10 @@ public class AmmoBar : MonoBehaviour
 
     void Start()
     {
-        Barre = GetComponent<Image>();
-        
+        Ammo = GetComponent<Image>();
+        max = joueur.GetComponent<Player>().balleChargeur;
+    }
+    void Update(){
+        valeur = joueur.GetComponent<Player>().balleChargeur;
     }
 }
