@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
         }
         if(Cac.isGrounded){
             mouvZ = new Vector3 (Input.GetAxis("Horizontal"+playerID), 0 ,Input.GetAxis("Vertical"+playerID));
-            mouvZ = transform.TransformDirection(mouvZ);
             mouvZ *= speed;
         }
         mouvZ.y -= gravity * Time.deltaTime;
