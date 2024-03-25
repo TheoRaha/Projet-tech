@@ -27,15 +27,19 @@ public class Heuristique : MonoBehaviour
         if (!detectCollision(joueur, joueurAutre))
             value += 1000;
         if(joueur != null && joueurAutre != null){
-            value += (1/Math.Sqrt((joueur.transform.position.x-joueurAutre.transform.position.x)*(joueur.transform.position.x-joueurAutre.transform.position.x)+(joueur.transform.position.z - joueurAutre.transform.position.z)*(joueur.transform.position.z - joueurAutre.transform.position.z)))*100;
+            value += 1/Math.Sqrt((joueur.transform.position.x-joueurAutre.transform.position.x)*(joueur.transform.position.x-joueurAutre.transform.position.x)+(joueur.transform.position.z - joueurAutre.transform.position.z)*(joueur.transform.position.z - joueurAutre.transform.position.z))*100;
         }
         boiteTexte.GetComponent<TMPro.TextMeshProUGUI>().text = value.ToString();
     }
 
     Boolean detectCollision(GameObject joueur, GameObject autreJoueur){
-        Vector3 direction = autreJoueur.transform.position - joueur.transform.position;
+        Vector3 JA = joueur.transform.position;
+        Vector3 JB = autreJoueur.transform.position;  
+        JA.y = 1;
+        JB.y = 1;
+        Vector3 direction = JB - JA;
 
-        RaycastHit[] hits = Physics.RaycastAll(joueur.transform.position, direction, Vector3.Distance(joueur.transform.position, autreJoueur.transform.position));
+        RaycastHit[] hits = Physics.RaycastAll(JA, direction, Vector3.Distance(JA, JB));
         foreach (RaycastHit hit in hits)
         {
             if (hit.collider.gameObject != autreJoueur)
