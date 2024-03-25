@@ -51,5 +51,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Projet-tech.sln"
+    "dotnet.defaultSolution": "Projet-tech.sln",
+    "cSpell.enableFiletypes": [
+        "!csharp"
+    ]
 }
