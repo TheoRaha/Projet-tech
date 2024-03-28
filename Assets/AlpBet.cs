@@ -1,63 +1,64 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Heuristique.cs;
 using System;
 
 public class AlpBet : MonoBehaviour
 {
-    private int maxDepth = 3; // Profondeur maximale de l'algorithme Alpha-Beta
+    public int maxDepth = 3; // Profondeur maximale de l'algorithme Alpha-Beta
 
     public GameObject IA;
 
     public GameObject autreJoueur;
     // Méthode principale de l'IA
-    public float AlphaBeta(Noeud n, float alpha, float beta, int profondeur)
+    public Coup AlphaBeta(Noeud n, double alpha, double beta, int profondeur)
     {
         if(profondeur == 0 || estFinJeu()){
             n.evaluer();
             // System.out.println(n.getH());
             // System.out.println(n);
-            return new Coup(n.getH(), -1);
+            return new Coup(n.getH(), new Vector3(), new Vector3(), false);
         }
         if(n.isMax()){
             int bestY = 0;
-            for(int y = 0; y < n.getPositions().Length; y++){
-                copiePositions(n.getPositions(), );
+            for(int y = 0; y < 4; y++){
+                Vector3[] mBuffer = new Vector3[2];
+                copiePositions(n.getPositions(), mBuffer);
                 if(jouer(n.isMax(), y, mBuffer)){ //n
-                    Noeud successeur = new Noeud(IA, autreJoueur, !n.isMax(), );
-                    Coup coup = alpha_beta(successeur, alpha, beta, profondeur-1);
+                    Noeud successeur = new Noeud(IA, autreJoueur, !n.isMax(), mBuffer);
+                    Coup coup = AlphaBeta(successeur, alpha, beta, profondeur-1);
                     if(coup.getEval() > alpha){
                         alpha = coup.getEval();
                         bestY = y;
                     }
                     if(alpha >= beta){
-                        return new Coup(alpha, bestY);
+                        if(n.isMax()){}
+                            return new Coup(alpha, vecteurDeplacement(n.getPositions()[1], bestY), new Vector3(), false);
                     }
                 }
             }
-            return new Coup(alpha, bestY);
+            return new Coup(alpha, vecteurDeplacement(n.getPositions()[1], bestY), new Vector3(), false);
         } else {
             int worstY = 0;
-            for(int y = 0; y < n.getPositions().Length; y++){
+            for(int y = 0; y < 4; y++){
                 Vector3[] mBuffer = new Vector3[2];
                 copiePositions(n.getPositions(), mBuffer);
                 if(jouer(n.isMax(), y, mBuffer)){ //n
-                    Noeud successeur = new Noeud(!n.isMax(), mBuffer);
-                    Coup coup = alpha_beta(successeur, alpha, beta, profondeur-1);
+                    Noeud successeur = new Noeud(IA, autreJoueur, !n.isMax(), mBuffer);
+                    Coup coup = AlphaBeta(successeur, alpha, beta, profondeur-1);
                     if(coup.getEval() < beta){
                         beta = coup.getEval();
                         worstY = y;
                     }
                     if(alpha >= beta){
-                        return new Coup(beta, worstY);
+                        return new Coup(beta, vecteurDeplacement(n.getPositions()[1], worstY), new Vector3(), false);
                     }
                 }
             }
-            return new Coup(beta, worstY);
+            return new Coup(beta, vecteurDeplacement(n.getPositions()[1], worstY), new Vector3(), false);
         }
     }
 
-    private Boolean estFinJeu(){
+    private bool estFinJeu(){
         return !(IA != null && autreJoueur != null);
     }
 
@@ -69,8 +70,36 @@ public class AlpBet : MonoBehaviour
         }
     }
 
-    private Boolean jouer(Boolean typeJoueur, Vector3 position){
-        // TODO
+    private bool jouer(bool typeJoueur, int deplacement, Vector3[] positions){
+        if(typeJoueur)
+            positions[1] = vecteurDeplacement(positions[1],deplacement);
+        else
+            positions[0] = vecteurDeplacement(positions[0],deplacement);
         return true;
+    }
+
+    private Vector3 vecteurDeplacement(Vector3 origine, int y){
+        switch(y){
+            case 0:
+                return new Vector3(origine.x+1, origine.y, origine.z);
+            case 1:
+                return new Vector3(origine.x-1, origine.y, origine.z);
+            case 2:
+                return new Vector3(origine.x, origine.y, origine.z+1);
+            case 3:
+                return new Vector3(origine.x, origine.y, origine.z-1);
+        }
+        return origine;
+    }
+
+    void Update()
+    {
+        Vector3[] pos = new Vector3[2];
+        pos[1] = IA.transform.position;
+        pos[0] = autreJoueur.transform.position;
+        Noeud n = new Noeud(IA, autreJoueur, true, pos);
+        Coup buffer = AlphaBeta(n, 0, 0, maxDepth);
+        IA.transform.position.Set(buffer.getCoordonnee().x, buffer.getCoordonnee().y, buffer.getCoordonnee().z);
+        UnityEngine.Debug.Log(buffer.getCoordonnee());
     }
 }

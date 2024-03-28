@@ -1,17 +1,17 @@
-using System.Numerics;
+using UnityEngine;
 
-class Coup
+public class Coup
 {
-    private int eval;
+    private double eval;
     private Vector3 coordonnee;
 
     private Vector3 rotation;
 
     private bool tir;
 
-    public Coup(int val, Vector3 c, Vector3 rotation, bool tir){
-        eval = val;
-        coordonnee = c;
+    public Coup(double h, Vector3 coord, Vector3 rotation, bool tir){
+        eval = h;
+        coordonnee = coord;
         this.rotation = rotation;
         this.tir = tir;
     }
@@ -20,7 +20,15 @@ class Coup
         return coordonnee;
     }
     
-    public int getEval() {
+    public double getEval() {
         return eval;
+    }
+
+    public Vector3 getRotation(){
+        return rotation;
+    }
+
+    public bool getTir(){
+        return tir;
     }
 }
