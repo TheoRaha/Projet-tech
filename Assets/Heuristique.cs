@@ -23,13 +23,15 @@ public class Heuristique : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        value = 0;
-        if (!detectCollision(joueur, joueurAutre))
-            value += 1000;
         if(joueur != null && joueurAutre != null){
-            value += 1/Math.Sqrt((joueur.transform.position.x-joueurAutre.transform.position.x)*(joueur.transform.position.x-joueurAutre.transform.position.x)+(joueur.transform.position.z - joueurAutre.transform.position.z)*(joueur.transform.position.z - joueurAutre.transform.position.z))*100;
+            value = 0;
+            if (!detectCollision(joueur, joueurAutre))
+                value += 1000;
+            if(joueur != null && joueurAutre != null){
+                value += 1/Math.Sqrt((joueur.transform.position.x-joueurAutre.transform.position.x)*(joueur.transform.position.x-joueurAutre.transform.position.x)+(joueur.transform.position.z - joueurAutre.transform.position.z)*(joueur.transform.position.z - joueurAutre.transform.position.z))*100;
+            }
+            boiteTexte.GetComponent<TMPro.TextMeshProUGUI>().text = value.ToString();
         }
-        boiteTexte.GetComponent<TMPro.TextMeshProUGUI>().text = value.ToString();
     }
 
     Boolean detectCollision(GameObject joueur, GameObject autreJoueur){

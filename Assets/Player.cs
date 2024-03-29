@@ -30,8 +30,8 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
         }
         if(Cac.isGrounded){
-            mouvZ = new Vector3 (Input.GetAxis("Horizontal"+playerID), 0 ,Input.GetAxis("Vertical"+playerID));
-            mouvZ = transform.TransformDirection(mouvZ);
+            mouvZ = new Vector3 (-Input.GetAxis("Vertical"+playerID), 0 ,Input.GetAxis("Horizontal"+playerID));
+            //mouvZ = transform.TransformDirection(mouvZ);
             mouvZ *= speed;
         }
         mouvZ.y -= gravity * Time.deltaTime;
@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
         {
             Vector3 spawn = transform.position;
             spawn += transform.TransformDirection(0,0,1);
-            
             GameObject balle = Instantiate(munition, spawn, Quaternion.identity) as GameObject;
             balle.GetComponent<Bullet>().owner = this.gameObject;
             balleChargeur--;
