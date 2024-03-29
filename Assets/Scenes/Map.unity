@@ -2002,6 +2002,10 @@ PrefabInstance:
       propertyPath: playerID
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2208795629423738359, guid: e264608b4ee4d5e4ba2db5e949af643f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2994068180810082494, guid: e264608b4ee4d5e4ba2db5e949af643f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2471,8 +2475,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDepth: 3
+  speed: 5
   IA: {fileID: 1948263804}
   autreJoueur: {fileID: 2047916173}
+  munition: {fileID: 7872443279033800451, guid: 9c540b5dd962ac34389ad5fd960923c0, type: 3}
+  balleChargeur: 7
+  vitesseBalle: 10
 --- !u!1 &1966556195
 GameObject:
   m_ObjectHideFlags: 0
