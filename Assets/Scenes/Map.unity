@@ -2478,6 +2478,7 @@ MonoBehaviour:
   speed: 5
   IA: {fileID: 1948263804}
   autreJoueur: {fileID: 2047916173}
+  player: {fileID: 0}
   munition: {fileID: 7872443279033800451, guid: 9c540b5dd962ac34389ad5fd960923c0, type: 3}
   balleChargeur: 7
   vitesseBalle: 10
@@ -2515,7 +2516,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -471.7, y: 0}
+  m_AnchoredPosition: {x: -873.2, y: 0}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1966556197
@@ -2876,11 +2877,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5629118451299291657, guid: 298850905dd41fb4cad9a5cf5d8e3a2c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 450
+      value: 850
       objectReference: {fileID: 0}
     - target: {fileID: 6494709894019876092, guid: 298850905dd41fb4cad9a5cf5d8e3a2c, type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 9113560856150175914, guid: 298850905dd41fb4cad9a5cf5d8e3a2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 850
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2985,7 +2990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5629118451299291657, guid: 298850905dd41fb4cad9a5cf5d8e3a2c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -450
+      value: -830
       objectReference: {fileID: 0}
     - target: {fileID: 5970526678507134498, guid: 298850905dd41fb4cad9a5cf5d8e3a2c, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -2997,7 +3002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9113560856150175914, guid: 298850905dd41fb4cad9a5cf5d8e3a2c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -450
+      value: -830
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

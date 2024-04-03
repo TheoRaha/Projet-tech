@@ -1,9 +1,4 @@
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {

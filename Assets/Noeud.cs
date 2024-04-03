@@ -44,19 +44,14 @@ public class Noeud
     }
 
     public Boolean detectCollision(Vector3 JA, Vector3 JB){
-        JA.y = 1;
+        JA.y = 1; // Mise de la hauteur à la hauteur de tir
         JB.y = 1;
         Vector3 direction = JB - JA;
-
         RaycastHit[] hits = Physics.RaycastAll(JA, direction, Vector3.Distance(JA, JB));
-        //Debug.DrawRay(JA, direction, Color.green);
         foreach (RaycastHit hit in hits)
         {
             if (hit.collider.gameObject != autreJoueur && hit.collider.gameObject != IA)
-            {
-                //Debug.DrawRay(JA, direction, Color.red);
                 return true;
-            }
         }
         return false;
     }
