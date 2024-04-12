@@ -2100,6 +2100,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4257105900138292244, guid: e264608b4ee4d5e4ba2db5e949af643f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1948263811}
+    - targetCorrespondingSourceObject: {fileID: 4257105900138292244, guid: e264608b4ee4d5e4ba2db5e949af643f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1948263812}
   m_SourcePrefab: {fileID: 100100000, guid: e264608b4ee4d5e4ba2db5e949af643f, type: 3}
 --- !u!1 &1585218407
 GameObject:
@@ -2481,6 +2484,26 @@ MonoBehaviour:
   player: {fileID: 0}
   munition: {fileID: 7872443279033800451, guid: 9c540b5dd962ac34389ad5fd960923c0, type: 3}
   balleChargeur: 7
+  vitesseBalle: 10
+--- !u!114 &1948263812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948263804}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0913369729b31d4f9ce8abe83925f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDepth: 3
+  speed: 5
+  IA: {fileID: 1948263804}
+  autreJoueur: {fileID: 2047916173}
+  player: {fileID: 0}
+  munition: {fileID: 7872443279033800451, guid: 9c540b5dd962ac34389ad5fd960923c0, type: 3}
+  balleChargeur: 3
   vitesseBalle: 10
 --- !u!1 &1966556195
 GameObject:
